@@ -57,6 +57,24 @@
                               <input id="discount_price" value="{{$discount_price}}" name="discount_price" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                              <label for="s_qty" class="control-label mb-1">S_Size_Quantity</label>
+                              <input id="s_qty" value="{{$s_qty}}" name="s_qty" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
+                            </div>
+                            <div class="col-md-3">
+                              <label for="m_qty" class="control-label mb-1">M_Size_Quantity</label>
+                              <input id="m_qty" value="{{$m_qty}}" name="m_qty" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
+                            </div>
+                            <div class="col-md-3">
+                              <label for="l_qty" class="control-label mb-1">L_Size_Quantity</label>
+                              <input id="l_qty" value="{{$l_qty}}" name="l_qty" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
+                            </div>
+                            <div class="col-md-3">
+                              <label for="xl_qty" class="control-label mb-1">XL_Size_Quantity</label>
+                              <input id="xl_qty" value="{{$xl_qty}}" name="xl_qty" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="description" class="control-label mb-1">Description</label>
@@ -70,11 +88,6 @@
                         <label for="image" class="control-label mb-1">Image</label>
                         <input id="image" name="image" type="file" class="form-control" aria-required="true" aria-invalid="false" {{$image_required}}>
                     </div>
-                    <div>
-                    <button type="button" class="btn btn-outline-secondary btn-lg btn-block" onclick="add_more()">Add Attributes
-                        <i class="zmdi zmdi-plus"></i>
-                    </button>
-                    </div>
             </div>
         </div> 
          <div>
@@ -83,18 +96,4 @@
         <input type="hidden" name="id" value="{{$id}}"/>
     </form>
 </div>
-<script>
-    var count=0;
-    function add_more(){
-        count++;
-        var html='<div class="card" id="pab_e'+count+'"><div class="card-body"><div class="form-group"><div class="row">';
-        html+='<div class="col-md-3"><label for="size_id" class="control-label mb-1">Size</label><select id="size_id" name="size_id[]" type="text" class="form-control" aria-required="true" aria-invalid="false" required><option value="">Select Size</option>@foreach($size as $list)<option value="{{$list->id}}">{{$list->size}}</option>@endforeach</select></div>';
-        html+='<div class="col-md-2"><label for="qty" class="control-label mb-1">Quantity</label><input id="qty" name="qty[]" type="text" class="form-control" aria-required="true" aria-invalid="false" required></div>';
-        html+='</div></div><button type="button" class="btn btn-outline-secondary btn-lg btn-block" onclick=remove("'+count+'")>Remove</button></div></div>';
-        jQuery('#pab').append(html)
-    }
-    function remove(count){
-        jQuery('#pab_e'+count).remove();
-    }
-</script>
 @endsection

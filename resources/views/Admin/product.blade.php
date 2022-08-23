@@ -40,7 +40,7 @@
                         <td>{{$list->id}}</td>
                         <td>{{$list->name}}</td>
                         <td>{{$list->product_slug}}</td>
-                        <td><img width="30px" src="{{asset('/storage/media/'.$list->image)}}"/></td>
+                        <td><img width="30px" src="{{asset('storage/media/'.$list->image)}}"/></td>
                         <td>
                             @if($list->is_featured==1)
                              <a href="{{url('admin/product/is_featured/0')}}/{{$list->id}}">

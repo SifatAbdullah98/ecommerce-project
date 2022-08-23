@@ -22,7 +22,7 @@ class CategoryController extends Controller
             $result['category_name']=$arr['0']->category_name;
             $result['category_slug']=$arr['0']->category_slug;
             $result['parent_category_id']=$arr['0']->parent_category_id;
-            //$result['category_image']=$arr['0']->category_image;
+            $result['category_image']=$arr['0']->category_image;
             $result['id']=$arr['0']->id;
 
             //$result['category']=DB::table('categories')->where(['status'=>1])->where(['id','!=',$id])->get();           
@@ -31,7 +31,7 @@ class CategoryController extends Controller
             $result['category_name']='';
             $result['category_slug']=''; 
             $result['parent_category_id']='';
-            //$result['category_image']='';
+            $result['category_image']='';
             $result['id']=''; 
         }
         $result['category']=DB::table('categories')->where(['status'=>1])->get();
@@ -41,7 +41,7 @@ class CategoryController extends Controller
     {
         $request->validate([
             'category_name'=>'required',
-            //'category_image'=>'mimes:jpg,jpeg,png',
+            'category_image'=>'mimes:jpg,jpeg,png',
             'category_slug'=>'required|unique:categories,category_slug,'.$request->post('id'),
         ]);
         
@@ -58,14 +58,13 @@ class CategoryController extends Controller
             $category_image=$request->file('category_image');
             $ext=$category_image->extension();
             $category_image_name=time().'.'.$ext;
-            //$category_image->storeAs('/public/media/category',$category_image_name);
+            $category_image->storeAs('/public/media/category',$category_image_name);
             $model->category_image=$category_image_name;
         }
 
         $model->category_name=$request->post('category_name');
         $model->category_slug=$request->post('category_slug');
         $model->parent_category_id=$request->post('parent_category_id');
-        //$model->category_image=$request->post('category_image');
         $model->home=0;
         $model->status=1;
         $model->save();

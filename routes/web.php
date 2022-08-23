@@ -7,7 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SizeController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FrontController;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,14 +26,29 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/', [FrontController::class,'index']);
-Route::get('login', [AuthController::class,'index'])->name('login');
-Route::post('login', [AuthController::class,'login'])->name('login');
-Route::get('admin', [AdminController::class,'index']);
 Route::get('product/{id}', [FrontController::class,'product']);
 Route::get('registration', [FrontCustomerController::class,'registration']);
 Route::post('registration_process', [FrontCustomerController::class,'registration_process'])->name('registration.registration_process');
 Route::get('category/{id}', [FrontController::class,'category']);
+Route::get('category_product/{id}', [FrontController::class,'category_product']);
+Route::get('show_cart', [CartController::class,'show_cart'])->name('show_cart');
+Route::post('add_to_cart', [CartController::class,'add_to_cart'])->name('add_to_cart');
+Route::get('remove_from_cart/{id}', [CartController::class,'remove_from_cart']);
+Route::get('checkout', [CartController::class,'checkout']);
+Route::post('order_now', [CartController::class,'order_now'])->name('order_now');
 
+Route::get('login_view', [CustomerController::class,'login_view']);
+Route::post('login', [CustomerController::class,'login'])->name('login');
+Route::get('register_view', [FrontController::class,'register_view']);
+Route::post('register', [FrontController::class,'register'])->name('register');
+Route::get('logout', function(){
+    session()->forget('CUSTOMER_LOGIN');
+    session()->forget('CUSTOMER_ID');
+    return redirect('/');
+});
+
+
+Route::get('admin', [AdminController::class,'index']);
 Route::post('admin/auth', [AdminController::class,'auth'])->name('admin.auth');
 Route::group(['middleware'=>'admin_auth'],function(){
     //category route

@@ -41,10 +41,10 @@
                         @endforeach
                     </select>
                 </div>
-                <!--<div class="form-group">
+                <div class="form-group">
                     <label for="category_image" class="control-label mb-1">Image</label>
                     <input id="category_image" name="category_image" type="file" class="form-control" aria-required="true" aria-invalid="false">
-                </div>-->
+                </div>
                 <div>
                     <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
                         Submit

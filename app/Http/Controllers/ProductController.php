@@ -35,10 +35,13 @@ class ProductController extends Controller
             $result['is_featured']=$arr['0']->is_featured;
             $result['is_discounted']=$arr['0']->is_discounted;
             $result['is_trending']=$arr['0']->is_trending;
+            $result['s_qty']=$arr['0']->s_qty;
+            $result['m_qty']=$arr['0']->m_qty;
+            $result['l_qty']=$arr['0']->l_qty;
+            $result['xl_qty']=$arr['0']->xl_qty;
+
             $result['status']=$arr['0']->status;
             $result['id']=$arr['0']->id; 
-            
-            $result['productAttrArr']=DB::table('products_attr')->where(['product_id'=>$id])->get();
         }
         else{
             $result['category_id']='';
@@ -52,16 +55,15 @@ class ProductController extends Controller
             $result['is_featured']='';
             $result['is_discounted']='';
             $result['is_trending']='';
+            $result['s_qty']='';
+            $result['m_qty']='';
+            $result['l_qty']='';
+            $result['xl_qty']='';
             $result['status']='';
             $result['id']=0; 
-
-            $result['productAttrArr'][0]['product_id']='';
-            $result['productAttrArr'][0]['size_id']='';
-            $result['productAttrArr'][0]['qty']='';
         }
 
         $result['category']=DB::table('categories')->where(['status'=>1])->get();
-        $result['size']=DB::table('sizes')->where(['status'=>1])->get();
         return view('admin.manage_product',$result); 
     }
     public function manage_product_process(Request $request)
@@ -87,7 +89,7 @@ class ProductController extends Controller
             $image=$request->file('image');
             $ext=$image->extension();
             $image_name=time().'.'.$ext;
-            $image->storeAs('/public/media',$image_name);
+            $image->storeAs('public/media',$image_name);
             $model->image=$image_name;
         }
 
@@ -98,28 +100,15 @@ class ProductController extends Controller
         $model->price=$request->post('price');
         $model->keywords=$request->post('keywords');
         $model->discount_price=$request->post('discount_price');
+        $model->s_qty=$request->post('s_qty');
+        $model->m_qty=$request->post('m_qty');
+        $model->l_qty=$request->post('l_qty');
+        $model->xl_qty=$request->post('xl_qty');
         $model->is_featured=0;
         $model->is_discounted=0;
         $model->is_trending=0;
         $model->status=1;
         $model->save();
-        $pid=$model->id;
-
-        //Product Attributes
-        /*$skuArr=$request->post('sku');
-        $priceArr=$request->post('price');
-        $discount_priceArr=$request->post('discount_price');
-        $size_idArr=$request->post('size_id');
-        $qtyArr=$request->post('qty');
-        foreach($skuArr as $key=>$val){
-            $productAttrArr['product_id']=$pid;
-            $productAttrArr['sku']=$skuArr[$key];
-            $productAttrArr['price']=$priceArr[$key];
-            $productAttrArr['discount_price']=$discount_priceArr[$key];
-            $productAttrArr['size_id']=$size_idArr[$key];
-            $productAttrArr['qty']=$qtyArr[$key];
-            DB::table('products_attr')->insert($productAttrArr);
-        }*/
         $request->session()->flash('message',$msg);
         return redirect('admin/product');
     }

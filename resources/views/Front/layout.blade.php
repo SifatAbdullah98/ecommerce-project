@@ -53,23 +53,24 @@
                   <!-- Left nav -->
                 <ul class="nav navbar-nav">
                   <li><a href="{{url('/')}}">Home</a></li>
-                  <li><a href="{{url('category/@man2022')}}">Men</a>
-                  </li>
-                  <li><a href="{{url('category/@woman2022')}}">Women</a>
-                  </li>
-                  <li><a href="{{url('category/@acc_2022')}}">Accessories</a>
-                  </li>
-                  <li><a href="{{url('category/@footwear2022')}}">Footwear</a></li>
+                  @foreach($home_cat as $hl)
+                  <li><a href="{{url('category/'.$hl->id)}}">{{$hl->category_name}}</a>
+                  </li>  
+                  @endforeach
                 </ul>
               </div>
             </div>
               <!-- / header top left -->
               <div class="aa-header-top-right">
                 <ul class="aa-head-top-nav-right">
-                  <a href="{{url('login')}}" data-toggle="modal" data-toggle="tooltip" data-placement="bottom" title="Login"><span class="fal fa-user"></span></a>
-                  <a href="#" data-toggle="tooltip" data-placement="bottom" title="Cart"><span class="fal fa-shopping-cart"></span></a>
-                  <a href="#" data-toggle="tooltip" data-placement="bottom" title="Wishlist"><span class="fal fa-heart-o"></span></a>
+                @if(session()->has('CUSTOMER_LOGIN'))
+                 <a href="{{url('logout')}}" data-toggle="modal" data-toggle="tooltip" data-placement="bottom" title="Logout"><span class="fal fa-power-off"></span></a>
+                 <a class="aa-cart-link" href="{{url('/show_cart')}}" data-toggle="tooltip" data-placement="bottom" title="Cart"><span class="fal fa-shopping-cart"></a>
+                 <a href="#" data-toggle="tooltip" data-placement="bottom" title="Wishlist"><span class="fal fa-heart-o"></span></a>
+                @else
+                  <a href="{{url('login_view')}}" data-toggle="modal" data-toggle="tooltip" data-placement="bottom" title="Login"><span class="fal fa-user"></span></a>
                   </a>
+                @endif
                 </ul>
               </div>
             </div>

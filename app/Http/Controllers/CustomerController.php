@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CustomerController extends Controller
 {
@@ -30,4 +31,40 @@ class CustomerController extends Controller
         $request->session()->flash('message','Status updated');
         return redirect('admin/customer');        
     }
+    public function indexl(Request $request)
+    {
+        if($request->session()->has('CUSTOMER_LOGIN'))
+        {
+            return redirect('/');
+        }
+        else
+        {
+            return view('front.login_view');
+        }
+    }
+    public function login_view(Request $request)
+    {
+        return view('front.login_view');
+    }
+    public function login(Request $request)
+    {
+
+        $phone=$request->post('phone');
+        $password=$request->post('password');
+        $result=Customer::where(['phone'=>$phone, 'password'=>$password])->get();
+
+      if(isset($result['0']->id))
+      {
+         $request->session()->put('CUSTOMER_LOGIN',true);
+         $request->session()->put('CUSTOMER_ID',$result['0']->id);
+         return redirect('/');
+         //echo "<h2>PHP is Fun!</h2>";
+      }
+      else
+      {
+         $request->session()->flash('error','Please enter valid information');
+         return redirect('/login_view');
+         //echo "<h2>PHP is not Fun!</h2>";
+      }
+     }
 }

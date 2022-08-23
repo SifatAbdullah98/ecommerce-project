@@ -25,44 +25,44 @@
                     <h3>{{$product[0]->name}}</h3>
                     <div class="aa-price-block">
                       <span class="aa-product-view-price">BDT {{$product[0]->price}}</span>
+                      @if($product[0]->s_qty==0)
+                      @elseif($product[0]->m_qty==0)
+                      @elseif($product[0]->l_qty==0)
+                      @elseif($product[0]->xl_qty==0)
+                       <p class="aa-product-avilability">Avilability: <span>Out of stock</span></p>
+                      @else
                       <p class="aa-product-avilability">Avilability: <span>In stock</span></p>
-                    </div>
-
-                    <h4>Size</h4>
-                  <div class="aa-prod-view-size">
-                    @php
-                     $arrSize=[];
-                     foreach($product_attr[$product[0]->id] as $size){
-                      $arrSize[]=$size->size;
-                     }
-                     $arrSize=array_unique($arrSize);
-                    @endphp
-                    @foreach($arrSize as $size)
-                      @if($size!='')
-                      <a href="javascript:void(0)" id="size_{{$size}}" onclick="select('{{$size}}')">{{$size}}</a>
                       @endif
-                    @endforeach
-                  </div>
-                  <input type="hidden" id="size"/>
-                  <div class="aa-prod-quantity">
-                      <form action="">
-                        <select id="" name="">
-                          <option selected="1" value="0">1</option>
-                          <option value="1">2</option>
-                          <option value="2">3</option>
-                          <option value="3">4</option>
-                          <option value="4">5</option>
-                          <option value="5">6</option>
-                        </select>
-                      </form>
+                    </div>
+                    <p class="aa-product-description">Details: {{$product[0]->description}}</p>
+                    <h4>Available Size</h4>
+                    <div class="aa-prod-view-size">
+                          @if($product[0]->s_qty!=0)
+                          <a href="#">S</a>
+                          @endif
+                          @if($product[0]->m_qty!=0)
+                          <a href="#">M</a>
+                          @endif
+                          @if($product[0]->l_qty!=0)
+                          <a href="#">L</a>
+                          @endif
+                          @if($product[0]->xl_qty!=0)
+                          <a href="#">XL</a>
+                          @endif
                     </div>
                       <p class="aa-prod-category">
-                        Category: <a href="#">Polo T-Shirt</a>
+                        Category: <a href="#">{{$products[0]->category_name}}</a>
                       </p>
                     </div>
                     <div class="aa-prod-view-bottom">
-                      <a class="aa-add-to-cart-btn" href="javascript:void(0)" onclick="add_to_cart('{{$product[0]->id}}')">Add To Cart</a>
-                      <a class="aa-add-to-cart-btn" href="#">Wishlist</a>
+                      @php
+                       $pid=$product[0]->id;
+                      @endphp
+                      <form action="/add_to_cart" method="POST">
+                        @csrf
+                       <input type="hidden" name="product_id" value="{{$pid}}">
+                       <button class="btn btn-primary">Add To Cart</a>
+                      </form>
                     </div>
                   </div>
                 </div>
@@ -70,16 +70,12 @@
             </div>
             <div class="aa-product-details-bottom">
               <ul class="nav nav-tabs" id="myTab2">
-                <li><a href="#description" data-toggle="tab">Description</a></li>
                 <li><a href="#review" data-toggle="tab">Reviews</a></li>                
               </ul>
 
               <!-- Tab panes -->
               <div class="tab-content">
-                <div class="tab-pane fade in active" id="description">
-                  <p>{{$product[0]->description}}</p>
-                </div>
-                <div class="tab-pane fade " id="review">
+                <div class="tab-pane fade in active " id="review">
                  <div class="aa-product-review-area">
                    <h4>2 Reviews for T-Shirt</h4> 
                    <ul class="aa-review-nav">

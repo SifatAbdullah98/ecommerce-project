@@ -142,7 +142,11 @@
                                  <a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                                  <figcaption>
                                     <h4 class="aa-product-title"><a href="">{{$productArr->name}}</a></h4>
-                                    <span class="aa-product-price">{{$productArr->price}}</span><span class="aa-product-price"><del>{{$productArr->discount_price}}</del></span>
+                                    <span class="aa-product-price">BDT {{$productArr->price}}</span><span class="aa-product-price">
+                                    @if($productArr->is_discounted==1)
+                                       <del>{{$productArr->discount_price}}</del>
+                                    @endif
+                                    </span>
                                  </figcaption>
                               </figure>
                               <div class="aa-product-hvr-content">
@@ -163,7 +167,11 @@
                                  <a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                                  <figcaption>
                                     <h4 class="aa-product-title"><a href="">{{$productArr->name}}</a></h4>
-                                    <span class="aa-product-price">{{$productArr->price}}</span><span class="aa-product-price"><del>{{$productArr->discount_price}}</del></span>
+                                    <span class="aa-product-price">BDT {{$productArr->price}}</span><span class="aa-product-price">
+                                    @if($productArr->is_discounted==1)
+                                       <del>{{$productArr->discount_price}}</del>
+                                    @endif
+                                    </span>
                                  </figcaption>
                               </figure>
                               <div class="aa-product-hvr-content">
@@ -184,7 +192,11 @@
                                  <a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                                  <figcaption>
                                     <h4 class="aa-product-title"><a href="">{{$productArr->name}}</a></h4>
-                                    <span class="aa-product-price">{{$productArr->price}}</span><span class="aa-product-price"><del>{{$productArr->discount_price}}</del></span>
+                                    <span class="aa-product-price">BDT {{$productArr->price}}</span><span class="aa-product-price">
+                                    @if($productArr->is_discounted==1)
+                                       <del>{{$productArr->discount_price}}</del>
+                                    @endif
+                                    </span>
                                  </figcaption>
                               </figure>
                               <div class="aa-product-hvr-content">
