@@ -1,7 +1,7 @@
 @extends('front/layout')
 
 @section('container')
-
+@section('page_title','Cart')
 <!-- Cart view section -->
 <section id="cart-view">
    <div class="container">

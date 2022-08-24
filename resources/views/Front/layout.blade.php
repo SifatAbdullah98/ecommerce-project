@@ -64,11 +64,11 @@
               <div class="aa-header-top-right">
                 <ul class="aa-head-top-nav-right">
                 @if(session()->has('CUSTOMER_LOGIN'))
-                 <a href="{{url('logout')}}" data-toggle="modal" data-toggle="tooltip" data-placement="bottom" title="Logout"><span class="fal fa-power-off"></span></a>
+                 <a href="{{url('/customer_order_details')}}" data-toggle="tooltip" data-placement="bottom" title="My Account"></span><span class="fal fa-user"></span></a>
                  <a class="aa-cart-link" href="{{url('/show_cart')}}" data-toggle="tooltip" data-placement="bottom" title="Cart"><span class="fal fa-shopping-cart"></a>
-                 <a href="#" data-toggle="tooltip" data-placement="bottom" title="Wishlist"><span class="fal fa-heart-o"></span></a>
+                 <a href="{{url('logout')}}" data-toggle="modal" data-toggle="tooltip" data-placement="bottom" title="Logout"><span class="fal fa-sign-out"></span></a>
                 @else
-                  <a href="{{url('login_view')}}" data-toggle="modal" data-toggle="tooltip" data-placement="bottom" title="Login"><span class="fal fa-user"></span></a>
+                  <a href="{{url('login_view')}}" data-toggle="modal" data-toggle="tooltip" data-placement="bottom" title="Login"><span class="fal fa-sign-in"></span></a>
                   </a>
                 @endif
                 </ul>

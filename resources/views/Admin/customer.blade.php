@@ -24,9 +24,6 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Phone</th>
-                        <th>Division</th>
-                        <th>District</th>
-                        <th>Area</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -38,9 +35,6 @@
                         <td>{{$list->name}}</td>
                         <td>{{$list->email}}</td>
                         <td>{{$list->phone}}</td>
-                        <td>{{$list->division}}</td>
-                        <td>{{$list->district}}</td>
-                        <td>{{$list->area}}</td>
                         <td>
                             @if($list->status==1)
                              <a href="{{url('admin/customer/status/0')}}/{{$list->id}}">

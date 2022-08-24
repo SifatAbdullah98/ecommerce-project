@@ -8,6 +8,7 @@ use App\Http\Controllers\SizeController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,6 +32,7 @@ Route::get('registration', [FrontCustomerController::class,'registration']);
 Route::post('registration_process', [FrontCustomerController::class,'registration_process'])->name('registration.registration_process');
 Route::get('category/{id}', [FrontController::class,'category']);
 Route::get('category_product/{id}', [FrontController::class,'category_product']);
+Route::get('customer_order_details', [CustomerController::class,'customer_order_details']);
 Route::get('show_cart', [CartController::class,'show_cart'])->name('show_cart');
 Route::post('add_to_cart', [CartController::class,'add_to_cart'])->name('add_to_cart');
 Route::get('remove_from_cart/{id}', [CartController::class,'remove_from_cart']);
@@ -94,6 +96,11 @@ Route::group(['middleware'=>'admin_auth'],function(){
     Route::get('admin/customer', [CustomerController::class,'index']);
     Route::get('admin/customer/customer_details/{id}', [CustomerController::class,'show']);
     Route::get('admin/customer/status/{status}/{id}', [CustomerController::class,'status']);
+    //order route
+    Route::get('admin/order', [OrderController::class,'index']);
+    Route::get('admin/order/order_status/{order_status}/{id}', [OrderController::class,'order_status']);
+    Route::get('admin/order/delivery_status/{delivery_status}/{id}', [OrderController::class,'delivery_status']);
+    Route::get('admin/order/delete/{id}', [OrderController::class,'delete']);
 
     Route::get('admin/logout', function(){
         session()->forget('ADMIN_LOGIN');

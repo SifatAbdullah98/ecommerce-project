@@ -57,6 +57,10 @@
                             <a href="{{url('admin/customer')}}">
                                 <i class="fa fa-group"></i>Customers</a>
                         </li>
+                        <li class="@yield('order_select')">
+                            <a href="{{url('admin/order')}}">
+                                <i class="fa fa-thumb-tack"></i>Orders</a>
+                        </li>
                       </li>   
                     </ul>
                 </nav>

@@ -36,7 +36,6 @@ class CartController extends Controller
         $result['home_cat']=DB::table('categories')->where(['status'=>1])->where(['home'=>1])->get();
         $customer_id=session()->get('CUSTOMER_ID');
         $product=DB::table('cart')->join('products','products.id','=','cart.product_id')->where(['customer_id'=>$customer_id])->select('products.*','cart.id as cart_id')->get();
-        $voucher=DB::table('vouchers')->where(['status'=>1])->get();
 
 
         return view('front.show_cart',['product'=>$product],$result);
@@ -51,16 +50,23 @@ class CartController extends Controller
         $customer_id=session()->get('CUSTOMER_ID');
         $product=DB::table('cart')->join('products','products.id','=','cart.product_id')->where(['customer_id'=>$customer_id])->select('products.*','cart.id as cart_id')->get();
         $customer=DB::table('customers')->where(['customer_id'=>$customer_id]);
-        return view('front.checkout',['product'=>$product],$result);
+        return view('front.order_now',['product'=>$product],$result);
     }
     public function order_now(Request $request)
     {
+        $request->validate([
+            'division'=>'required',
+            'district'=>'required',
+            'area'=>'required',
+            'details_address'=>'required'
+        ]);
         $customer_id=session()->get('CUSTOMER_ID');
-        return $all=Cart::where('customer_id',$customer_id)->get();
+        $all=Cart::where('customer_id',$customer_id)->get();
         foreach($all as $list){
             $order=new Order();
             $order->customer_id=$list['customer_id'];
             $order->product_id=$list['product_id'];
+            $order->phone=$request->post('phone');
             $order->division=$request->post('division');
             $order->district=$request->post('district');
             $order->area=$request->post('area');
@@ -68,6 +74,8 @@ class CartController extends Controller
             $order->order_status=0;
             $order->delivery_status=0;
             $order->save();
+            Cart::where('customer_id',$customer_id)->delete();
+            //$request->session()->flash('message','Order placed');
         }
         return redirect('/');
     }

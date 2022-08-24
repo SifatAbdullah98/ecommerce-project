@@ -1,6 +1,6 @@
 @extends('front/layout')
-
 @section('container')
+@section('page_title','Checkout')
 
  
 <!-- Cart view section -->
@@ -62,7 +62,6 @@
                    </tr>
                  </tbody>
                </table>
-               <a href="{{url('checkout')}}" class="aa-cart-view-btn">Proced to Checkout</a>
              </div>
            </div>
          </div>
@@ -79,8 +78,12 @@
               <div class="col-md-12">
                 <div class="aa-myaccount-register">                 
                  <h4>Shipping details</h4>
-                  <form action="/order_now" method="POST" class="aa-login-form">
+                  <form action="{{route('order_now')}}" method="POST" class="aa-login-form">
                   @csrf 
+                  <div class="form-group">
+                    <label for="division" class="control-label mb-1">Phone</label>
+                    <input id="division" value="" name="phone" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
+                  </div>
                   <div class="form-group">
                     <label for="division" class="control-label mb-1">Division</label>
                     <input id="division" value="" name="division" type="text" class="form-control" aria-required="true" aria-invalid="false" required>

@@ -21,8 +21,17 @@ class CustomerController extends Controller
     public function show(Request $request,$id='')
     {
         $arr=Customer::where(['id'=>$id])->get();
+        $order['order']=DB::table('orders')->where(['customer_id'=>$id])->get();
         $result['customer_detais']=$arr['0'];         
-        return view('admin/customer_details',$result); 
+        return view('admin/customer_details',$result,$order); 
+    }
+    public function customer_order_details(Request $request)
+    {
+        $result['home_cat']=DB::table('categories')->where(['status'=>1])->where(['home'=>1])->get();
+        $customer_id=session()->get('CUSTOMER_ID');
+        $order['order']=DB::table('orders')->where(['customer_id'=>$customer_id])->join('products','products.id','=','orders.product_id')->get();
+        //$order['product']=DB::table('products')->where(['customer_id'=>$customer_id])->join('products','products.id','=','orders.product_id')->get();        
+        return view('front.customer_order_details',$result,$order); 
     }
     public function status(Request $request,$status,$id){
         $model=Customer::find($id);

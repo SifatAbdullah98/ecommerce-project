@@ -42,22 +42,6 @@
                         <td>{{$customer_detais->phone}}</td>
                     </tr>
                     <tr>
-                        <td>Division</td>
-                        <td>{{$customer_detais->division}}</td>
-                    </tr>
-                    <tr>
-                        <td>District</td>
-                        <td>{{$customer_detais->district}}</td>
-                    </tr>
-                    <tr>
-                        <td>Area</td>
-                        <td>{{$customer_detais->area}}</td>
-                    </tr>
-                    <tr>
-                        <td>Details Address</td>
-                        <td>{{$customer_detais->details_address}}</td>
-                    </tr>
-                    <tr>
                         <td>Customer since</td>
                         <td>{{\carbon\carbon::parse($customer_detais->created_at)->format('d-m-y')}}</td>
                     </tr>
@@ -81,15 +65,51 @@
                              Order date
                             </th>
                             <th>
-                             Order amount
+                             Order staus
                             </th>
                             <th>
-                             Order staus
+                             Delivery staus
                             </th>
                         </tr>
                     </thead>
-                <tbody>
-                </tbody>
+                    @foreach($order as $list)
+                     <tbody>
+                        <tr>
+                            <td>
+                              {{$list->id}}
+                            </td>
+                            <td>
+                              {{\carbon\carbon::parse($list->created_at)->format('d-m-y')}}
+                            </td>  
+                            <td>
+                            @if($list->order_status==1)
+                             <a href="{{url('admin/order/order_status/1')}}/{{$list->id}}">
+                             <input class="btn btn-outline-success" type="reset" value="Approved">
+                             @elseif($list->order_status==0)
+                              <a href="{{url('admin/order/order_status/1')}}/{{$list->id}}">
+                              <input class="btn btn-outline-warning" type="reset" value="Pending">
+                            @endif
+                            </td> 
+                            <td>
+                        @if($list->order_status==1)
+                            @if($list->delivery_status==0)
+                             <a href="{{url('admin/order/delivery_status/1')}}/{{$list->id}}">
+                             <input class="btn btn-outline-primary" type="reset" value="Pending">
+                             @elseif($list->delivery_status==1)
+                              <a href="{{url('admin/order/delivery_status/2')}}/{{$list->id}}">
+                              <input class="btn btn-outline-warning" type="reset" value="Processing">
+                             @elseif($list->delivery_status==2)
+                              <a href="{{url('admin/order/delivery_status/3')}}/{{$list->id}}">
+                              <input class="btn btn-outline-warning" type="reset" value="Dispatched">
+                             @elseif($list->delivery_status==3)
+                              <a href="{{url('admin/order/delivery_status/3')}}/{{$list->id}}">
+                              <input class="btn btn-outline-success" type="reset" value="Delivered">
+                            @endif
+                        @endif
+                            </td>  
+                        </tr>
+                     </tbody>
+                    @endforeach
             </table>
         </div>
         <!-- END DATA TABLE-->

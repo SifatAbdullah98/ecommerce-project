@@ -14,72 +14,27 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $result['data']=Order::all();
+        return view('admin.order',$result);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function order_status(Request $request,$order_status,$id){
+        $model=Order::find($id);
+        $model->order_status=$order_status;
+        $model->save();
+        $request->session()->flash('message','Status updated');
+        return redirect('admin/order');        
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function delivery_status(Request $request,$delivery_status,$id){
+        $model=Order::find($id);
+        $model->delivery_status=$delivery_status;
+        $model->save();
+        $request->session()->flash('message','Status updated');
+        return redirect('admin/order');        
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function show(order $order)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(order $order)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, order $order)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(order $order)
-    {
-        //
+    public function delete(Request $request,$id){
+        $model=Order::find($id);
+        $model->delete();
+        $request->session()->flash('message','Order removed successfully');
+        return redirect('admin/order');        
     }
 }

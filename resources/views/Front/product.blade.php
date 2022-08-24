@@ -1,7 +1,7 @@
 @extends('front/layout')
 
 @section('container')
-
+@section('page_title','Product details')
 <section id="aa-product-details">
     <div class="container">
       <div class="row">
@@ -59,9 +59,9 @@
                        $pid=$product[0]->id;
                       @endphp
                       <form action="/add_to_cart" method="POST">
-                        @csrf
-                       <input type="hidden" name="product_id" value="{{$pid}}">
-                       <button class="btn btn-primary">Add To Cart</a>
+                          @csrf
+                        <input type="hidden" name="product_id" value="{{$pid}}">
+                        <button class="btn btn-primary">Add To Cart</a>
                       </form>
                     </div>
                   </div>

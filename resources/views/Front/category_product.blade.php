@@ -1,5 +1,6 @@
 @extends('front/layout')
 @section('container')
+@section('page_title','Product')
 <section id="aa-popular-category">
    <div class="container">
       <div class="row">

@@ -1,5 +1,6 @@
 @extends('front/layout')
 @section('container')
+@section('page_title','Home')
 <section id="aa-slider">
    <div class="aa-slider-area">
       <div id="sequence" class="seq">
@@ -41,26 +42,37 @@
          <div class="col-md-12">
             <div class="aa-promo-area">
                <div class="row">
+                  @php
+                  $count=1;
+                  @endphp
                   <div class="col-md-6 ten-padding">
+                  @foreach($home_cat as $hl)
+                  @if($count==1)
                      <div class="aa-promo-left">
                         <div class="aa-promo-banner">
-                           <img width="800px" img src="{{asset('front_assets/img/Capture.png')}}" alt="img">                      
+                           <img width="800px" img src="{{asset('storage/media/category/'.$hl->category_image)}}" alt="img">                      
                            <div class="aa-prom-content">
-                              <h4><a href="{{url('category/@man2022')}}">Men</a></h4>
+                              <h4><a href="{{url('category/'.$hl->id)}}">{{$hl->category_name}}</a></h4>
                            </div>
                         </div>
                      </div>
                   </div>
+                  @elseif($count==2)
                   <div class="col-md-6 ten-padding">
                      <div class="aa-promo-right">
                         <div class="aa-promo-banner">
-                           <img width="800px" img src="{{asset('front_assets/img/268013169_1714185648790853_6991509318092666922_n.jpg')}}" alt="img">                      
+                           <img width="800px" img src="{{asset('storage/media/category/'.$hl->category_image)}}" alt="img">                      
                            <div class="aa-prom-content">
-                              <h4><a href="{{url('category/@woman2022')}}">Women</a></h4>
+                              <h4><a href="{{url('category/'.$hl->id)}}">{{$hl->category_name}}</a></h4>
                            </div>
                         </div>
                      </div>
                   </div>
+                  @endif
+                  @php
+                  $count++;
+                  @endphp
+                  @endforeach
                </div>
             </div>
          </div>
@@ -79,40 +91,9 @@
                <div class="aa-product-inner">
                   <!-- start prduct navigation -->
                   <ul class="nav nav-tabs aa-products-tab">
-                  <!--@foreach($home_cat as $list)
-                  <li class=""><a href="cat{{$list->id}}" data-toggle="tab">{{$list->category_name}}</a></li>
-                  @endforeach-->
                   @foreach($home_cat as $list)
-                  @php
-                  $count=1;
-                  @endphp
-                  @php
-                  $cat_class="";
-                  if($count==1){
-                  $cat_class="in active";
-                  $count++;
-                  }
-                  @endphp 
-                  <!--<div class="tab-pane fade {{$cat_class}}" id="cat{{$list->id}}">
-                     <ul class="aa-product-catg">
-                        @foreach($home_cat_product[$list->id] as $productArr)
-                        <li>
-                           <figure>
-                              <a class="aa-product-img" href="{{url('product/'.$productArr->product_slug)}}"><img width="200px" img src="{{asset('storage/media/'.$productArr->image)}}" alt="polo shirt img"></a>
-                              <a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
-                              <figcaption>
-                                 <h4 class="aa-product-title"><a href="">{{$productArr->name}}</a></h4>
-                                 <span class="aa-product-price">{{$productArr->price}}</span><span class="aa-product-price"><del>{{$productArr->discount_price}}</del></span>
-                              </figcaption>
-                           </figure>
-                           <div class="aa-product-hvr-content">
-                              <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>                            
-                           </div>
-                        </li>
-                        @endforeach
-                     </ul>
-                  </div>-->
-                  @endforeach 
+                  <!--<li class=""><a href="cat{{$list->id}}" data-toggle="tab">{{$list->category_name}}</a></li>--> 
+                  @endforeach
                </div>
             </div>
          </div>

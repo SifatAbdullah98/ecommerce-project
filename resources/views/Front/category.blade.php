@@ -1,6 +1,6 @@
 @extends('front/layout')
-
 @section('container')
+@section('page_title','Category')
 <section id="aa-product-category">
     <div class="container">
       <div class="row">
