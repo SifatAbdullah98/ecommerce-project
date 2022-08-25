@@ -26,7 +26,6 @@
                         <th>ID</th>
                         <th>Category name</th>
                         <th>Category slug</th>
-                        <th>Parent Category</th>
                         <th>Category Image</th>
                         <th>Show on home page</th>
                         <th>Status</th>
@@ -39,7 +38,6 @@
                         <td>{{$list->id}}</td>
                         <td>{{$list->category_name}}</td>
                         <td>{{$list->category_slug}}</td>
-                        <td>{{$list->parent_category_id}}</td>
                         <td><img width="60px" src="{{asset('storage/media/category/'.$list->category_image)}}"/></td>
                         <td>
                             @if($list->home==1)

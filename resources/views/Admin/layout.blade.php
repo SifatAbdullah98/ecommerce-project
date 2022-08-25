@@ -61,6 +61,10 @@
                             <a href="{{url('admin/order')}}">
                                 <i class="fa fa-thumb-tack"></i>Orders</a>
                         </li>
+                        <li class="@yield('review_select')">
+                            <a href="{{url('admin/review')}}">
+                                <i class="fa fa-thumbs-up"></i>Reviews</a>
+                        </li>
                       </li>   
                     </ul>
                 </nav>

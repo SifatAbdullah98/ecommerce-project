@@ -45,6 +45,7 @@ class FrontController extends Controller
         $result['home_cat']=DB::table('categories')->where(['status'=>1])->where(['home'=>1])->get();
         $result['product']=DB::table('products')->where(['status'=>1])->where(['product_slug'=>$product_slug])->get();
         $result['products']=DB::table('products')->join('categories','categories.id','=','products.category_id')->where(['product_slug'=>$product_slug])->get();
+        $result['review']=DB::table('reviews')->join('products','products.id','=','reviews.product_id')->join('customers','customers.id','=','reviews.customer_id')->where(['product_slug'=>$product_slug])->where(['review_status'=>1])->get();
         return view('front.product',$result);
     }
 }

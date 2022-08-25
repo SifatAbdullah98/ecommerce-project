@@ -60,7 +60,7 @@
                             @elseif($list->delivery_status==3)
                               Delivered
                             @endif
-                            </td>  
+                            </td>   
                         </tr>
                      </tbody>
                     @endforeach

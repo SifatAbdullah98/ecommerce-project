@@ -9,6 +9,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,6 +36,7 @@ Route::get('category_product/{id}', [FrontController::class,'category_product'])
 Route::get('customer_order_details', [CustomerController::class,'customer_order_details']);
 Route::get('show_cart', [CartController::class,'show_cart'])->name('show_cart');
 Route::post('add_to_cart', [CartController::class,'add_to_cart'])->name('add_to_cart');
+Route::post('add_review', [ReviewController::class,'add_review'])->name('add_review');
 Route::get('remove_from_cart/{id}', [CartController::class,'remove_from_cart']);
 Route::get('checkout', [CartController::class,'checkout']);
 Route::post('order_now', [CartController::class,'order_now'])->name('order_now');
@@ -101,6 +103,11 @@ Route::group(['middleware'=>'admin_auth'],function(){
     Route::get('admin/order/order_status/{order_status}/{id}', [OrderController::class,'order_status']);
     Route::get('admin/order/delivery_status/{delivery_status}/{id}', [OrderController::class,'delivery_status']);
     Route::get('admin/order/delete/{id}', [OrderController::class,'delete']);
+
+    //review route
+    Route::get('admin/review', [ReviewController::class,'index']);
+    Route::get('admin/review/review_status/{review_status}/{id}', [ReviewController::class,'review_status']);
+    Route::get('admin/review/delete/{id}', [ReviewController::class,'delete']);
 
     Route::get('admin/logout', function(){
         session()->forget('ADMIN_LOGIN');

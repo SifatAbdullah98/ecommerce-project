@@ -77,75 +77,34 @@
               <div class="tab-content">
                 <div class="tab-pane fade in active " id="review">
                  <div class="aa-product-review-area">
-                   <h4>2 Reviews for T-Shirt</h4> 
+                   <h4>Reviews for {{$product[0]->name}}</h4> 
                    <ul class="aa-review-nav">
+                    @foreach($review as $listR)
                      <li>
                         <div class="media">
                           <div class="media-left">
-                            <a href="#">
-                              <img class="media-object" src="img/testimonial-img-3.jpg" alt="girl image">
-                            </a>
                           </div>
                           <div class="media-body">
-                            <h4 class="media-heading"><strong>Marla Jobs</strong> - <span>March 26, 2016</span></h4>
-                            <div class="aa-product-rating">
-                              <span class="fa fa-star"></span>
-                              <span class="fa fa-star"></span>
-                              <span class="fa fa-star"></span>
-                              <span class="fa fa-star"></span>
-                              <span class="fa fa-star-o"></span>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                            <h4 class="media-heading"><strong>{{$listR->name}}</strong> - <span>{{\carbon\carbon::parse($listR->created_at)->format('d-m-y')}}</span></h4>
+                            <p>{{$listR->review}}</p>
                           </div>
                         </div>
                       </li>
-                      <li>
-                        <div class="media">
-                          <div class="media-left">
-                            <a href="#">
-                              <img class="media-object" src="img/testimonial-img-3.jpg" alt="girl image">
-                            </a>
-                          </div>
-                          <div class="media-body">
-                            <h4 class="media-heading"><strong>Marla Jobs</strong> - <span>March 26, 2016</span></h4>
-                            <div class="aa-product-rating">
-                              <span class="fa fa-star"></span>
-                              <span class="fa fa-star"></span>
-                              <span class="fa fa-star"></span>
-                              <span class="fa fa-star"></span>
-                              <span class="fa fa-star-o"></span>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                          </div>
-                        </div>
-                      </li>
+                      @endforeach
                    </ul>
+                   @if(session()->has('CUSTOMER_LOGIN'))
                    <h4>Add a review</h4>
-                   <div class="aa-your-rating">
-                     <p>Your Rating</p>
-                     <a href="#"><span class="fa fa-star-o"></span></a>
-                     <a href="#"><span class="fa fa-star-o"></span></a>
-                     <a href="#"><span class="fa fa-star-o"></span></a>
-                     <a href="#"><span class="fa fa-star-o"></span></a>
-                     <a href="#"><span class="fa fa-star-o"></span></a>
-                   </div>
                    <!-- review form -->
-                   <form action="" class="aa-review-form">
+                   <form action="/add_review" method="POST" >
+                    @csrf
                       <div class="form-group">
-                        <label for="message">Your Review</label>
-                        <textarea class="form-control" rows="3" id="message"></textarea>
+                        <label for="review" class="control-label mb-1">Your Review</label>
+                        <textarea id="review" value="" name="review" type="text" class="form-control" aria-required="true" aria-invalid="false" required></textarea>
                       </div>
-                      <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Name">
-                      </div>  
-                      <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="example@gmail.com">
-                      </div>
-
-                      <button type="submit" class="btn btn-default aa-review-submit">Submit</button>
+                      <input type="hidden" name="product_id" value="{{$pid}}">  
+                      <button class="btn btn-default aa-review-submit">Submit</button>
                    </form>
+                   @endif
                  </div>
                 </div>            
               </div>

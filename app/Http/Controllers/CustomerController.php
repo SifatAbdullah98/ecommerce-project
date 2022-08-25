@@ -67,13 +67,13 @@ class CustomerController extends Controller
          $request->session()->put('CUSTOMER_LOGIN',true);
          $request->session()->put('CUSTOMER_ID',$result['0']->id);
          return redirect('/');
-         //echo "<h2>PHP is Fun!</h2>";
+         //echo "<h2>check done!</h2>";
       }
       else
       {
          $request->session()->flash('error','Please enter valid information');
          return redirect('/login_view');
-         //echo "<h2>PHP is not Fun!</h2>";
+         //echo "<h2>check error</h2>";
       }
      }
 }
