@@ -16,9 +16,11 @@
                            <a class="aa-product-img" href="{{url('product/'.$productArr->product_slug)}}"><img width="200px" img src="{{asset('storage/media/'.$productArr->image)}}" alt="polo shirt img"></a>
                            <figcaption>
                               <h4 class="aa-product-title"><a href="">{{$productArr->name}}</a></h4>
-                              <span class="aa-product-price">BDT {{$productArr->price}}</span><span class="aa-product-price">
                               @if($productArr->is_discounted==1)
-                              <del>{{$productArr->discount_price}}</del>
+                                 <span class="aa-product-price">BDT {{$productArr->discount_price}}</span><span class="aa-product-price">
+                                 <del>{{$productArr->price}}</del>
+                              @else
+                                 <span class="aa-product-price">BDT {{$productArr->price}}</span>
                               @endif
                               </span>
                            </figcaption>

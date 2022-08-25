@@ -24,7 +24,12 @@
                   <div class="aa-product-view-content">
                     <h3>{{$product[0]->name}}</h3>
                     <div class="aa-price-block">
-                      <span class="aa-product-view-price">BDT {{$product[0]->price}}</span>
+                        @if($product[0]->is_discounted==1)
+                        <span class="aa-product-price">BDT {{$product[0]->discount_price}}</span><span class="aa-product-price">
+                        <del>{{$product[0]->price}}</del>
+                        @else
+                        <span class="aa-product-price">BDT {{$product[0]->price}}</span>
+                        @endif
                       @if($product[0]->s_qty==0)
                       @elseif($product[0]->m_qty==0)
                       @elseif($product[0]->l_qty==0)
