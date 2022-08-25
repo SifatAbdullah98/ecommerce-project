@@ -45,10 +45,6 @@
                             <a href="{{url('admin/voucher')}}">
                                 <i class="fas fa-tag"></i>Voucher</a>
                         </li>
-                        <li class="@yield('size_select')">
-                            <a href="{{url('admin/size')}}">
-                                <i class="fa fa-sort-amount-desc"></i>Size</a>
-                        </li>
                         <li class="@yield('product_select')">
                             <a href="{{url('admin/product')}}">
                                 <i class="fas fa-barcode"></i>Product</a>

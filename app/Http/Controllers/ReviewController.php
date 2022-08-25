@@ -33,7 +33,7 @@ class ReviewController extends Controller
         $model->review_status=$review_status;
         $model->save();
         $request->session()->flash('message','Status updated');
-        return redirect('admin/order');        
+        return redirect('admin/review');        
     }
     public function delete(Request $request,$id){
         $model=Review::find($id);

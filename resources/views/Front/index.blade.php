@@ -120,7 +120,6 @@
                            <li>
                               <figure>
                                  <a class="aa-product-img" href="{{url('product/'.$productArr->product_slug)}}"><img width="200px" img src="{{asset('storage/media/'.$productArr->image)}}" alt="polo shirt img"></a>
-                                 <a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                                  <figcaption>
                                     <h4 class="aa-product-title"><a href="">{{$productArr->name}}</a></h4>
                                     <span class="aa-product-price">BDT {{$productArr->price}}</span><span class="aa-product-price">
@@ -130,9 +129,6 @@
                                     </span>
                                  </figcaption>
                               </figure>
-                              <div class="aa-product-hvr-content">
-                                 <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>                            
-                              </div>
                            </li>
                            @endforeach                                                                              
                         </ul>
@@ -145,7 +141,6 @@
                            <li>
                               <figure>
                                  <a class="aa-product-img" href="{{url('product/'.$productArr->product_slug)}}"><img width="200px" img src="{{asset('storage/media/'.$productArr->image)}}" alt="polo shirt img"></a>
-                                 <a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                                  <figcaption>
                                     <h4 class="aa-product-title"><a href="">{{$productArr->name}}</a></h4>
                                     <span class="aa-product-price">BDT {{$productArr->price}}</span><span class="aa-product-price">
@@ -155,9 +150,6 @@
                                     </span>
                                  </figcaption>
                               </figure>
-                              <div class="aa-product-hvr-content">
-                                 <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>                            
-                              </div>
                            </li>
                            @endforeach                                                                                 
                         </ul>
@@ -170,7 +162,6 @@
                            <li>
                               <figure>
                                  <a class="aa-product-img" href="{{url('product/'.$productArr->product_slug)}}"><img width="200px" img src="{{asset('storage/media/'.$productArr->image)}}" alt="polo shirt img"></a>
-                                 <a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                                  <figcaption>
                                     <h4 class="aa-product-title"><a href="">{{$productArr->name}}</a></h4>
                                     <span class="aa-product-price">BDT {{$productArr->price}}</span><span class="aa-product-price">
@@ -180,9 +171,6 @@
                                     </span>
                                  </figcaption>
                               </figure>
-                              <div class="aa-product-hvr-content">
-                                 <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>                            
-                              </div>
                            </li>
                            @endforeach                                                                               
                         </ul>
