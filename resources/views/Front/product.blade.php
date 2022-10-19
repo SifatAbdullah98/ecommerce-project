@@ -36,7 +36,7 @@
                       @elseif($product[0]->xl_qty==0)
                        <p class="aa-product-avilability">Avilability: <span>Out of stock</span></p>
                       @else
-                      <p class="aa-product-avilability">Avilability: <span>In stock</span></p>
+                       <p class="aa-product-avilability">Avilability: <span>In stock</span></p>
                       @endif
                     </div>
                     <p class="aa-product-description">Details: {{$product[0]->description}}</p>

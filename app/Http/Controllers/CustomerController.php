@@ -40,17 +40,6 @@ class CustomerController extends Controller
         $request->session()->flash('message','Status updated');
         return redirect('admin/customer');        
     }
-    public function indexl(Request $request)
-    {
-        if($request->session()->has('CUSTOMER_LOGIN'))
-        {
-            return redirect('/');
-        }
-        else
-        {
-            return view('front.login_view');
-        }
-    }
     public function login_view(Request $request)
     {
         return view('front.login_view');

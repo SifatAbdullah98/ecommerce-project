@@ -121,7 +121,7 @@
                               <figure>
                                  <a class="aa-product-img" href="{{url('product/'.$productArr->product_slug)}}"><img width="200px" img src="{{asset('storage/media/'.$productArr->image)}}" alt="polo shirt img"></a>
                                  <figcaption>
-                                    <h4 class="aa-product-title"><a href="">{{$productArr->name}}</a></h4>
+                                    <h4 class="aa-product-title"><a href="{{url('product/'.$productArr->product_slug)}}">{{$productArr->name}}</a></h4>
                                  @if($productArr->is_discounted==1)
                                  <span class="aa-product-price">BDT {{$productArr->discount_price}}</span><span class="aa-product-price">
                                  <del>{{$productArr->price}}</del>
@@ -143,7 +143,7 @@
                               <figure>
                                  <a class="aa-product-img" href="{{url('product/'.$productArr->product_slug)}}"><img width="200px" img src="{{asset('storage/media/'.$productArr->image)}}" alt="polo shirt img"></a>
                                  <figcaption>
-                                    <h4 class="aa-product-title"><a href="">{{$productArr->name}}</a></h4>
+                                    <h4 class="aa-product-title"><a href="{{url('product/'.$productArr->product_slug)}}">{{$productArr->name}}</a></h4>
                                  @if($productArr->is_discounted==1)
                                  <span class="aa-product-price">BDT {{$productArr->discount_price}}</span><span class="aa-product-price">
                                  <del>{{$productArr->price}}</del>
@@ -165,7 +165,7 @@
                               <figure>
                                  <a class="aa-product-img" href="{{url('product/'.$productArr->product_slug)}}"><img width="200px" img src="{{asset('storage/media/'.$productArr->image)}}" alt="polo shirt img"></a>
                                  <figcaption>
-                                    <h4 class="aa-product-title"><a href="">{{$productArr->name}}</a></h4>
+                                    <h4 class="aa-product-title"><a href="{{url('product/'.$productArr->product_slug)}}">{{$productArr->name}}</a></h4>
                                  @if($productArr->is_discounted==1)
                                  <span class="aa-product-price">BDT {{$productArr->discount_price}}</span><span class="aa-product-price">
                                  <del>{{$productArr->price}}</del>
