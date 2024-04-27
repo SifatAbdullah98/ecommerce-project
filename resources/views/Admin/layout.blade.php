@@ -61,6 +61,18 @@
                             <a href="{{url('admin/review')}}">
                                 <i class="fa fa-thumbs-up"></i>Reviews</a>
                         </li>
+                        <li class="@yield('district_select')">
+                            <a href="{{url('admin/district')}}">
+                                <i class="fa fa-globe"></i>Districts</a>
+                        </li>
+                        <li class="@yield('zone_select')">
+                            <a href="{{url('admin/zone')}}">
+                                <i class="fa fa-map"></i>Zones</a>
+                        </li>
+                        <li class="@yield('area_select')">
+                            <a href="{{url('admin/area')}}">
+                                <i class="fa fa-map"></i>Areas</a>
+                        </li>
                       </li>   
                     </ul>
                 </nav>

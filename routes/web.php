@@ -10,6 +10,9 @@ use App\Http\Controllers\FrontController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\DistrictController;
+use App\Http\Controllers\ZoneController;
+use App\Http\Controllers\AreaController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -93,6 +96,30 @@ Route::group(['middleware'=>'admin_auth'],function(){
     Route::post('admin/size/manage_size_process', [SizeController::class,'manage_size_process'])->name('manage_size_process');
     Route::get('admin/size/delete/{id}', [SizeController::class,'delete']);
     Route::get('admin/size/status/{status}/{id}', [SizeController::class,'status']);
+
+    //district route
+    Route::get('admin/district', [DistrictController::class,'index']);
+    Route::get('admin/district/manage_district', [DistrictController::class,'manage_district']);
+    Route::get('admin/district/manage_district/{id}', [DistrictController::class,'manage_district']);
+    Route::post('admin/district/manage_district_process', [DistrictController::class,'manage_district_process'])->name('manage_district_process');
+    Route::get('admin/district/delete/{id}', [DistrictController::class,'delete']);
+    Route::get('admin/district/status/{status}/{id}', [DistrictController::class,'status']);
+
+    //zone route
+    Route::get('admin/zone', [ZoneController::class,'index']);
+    Route::get('admin/zone/manage_zone', [ZoneController::class,'manage_zone']);
+    Route::get('admin/zone/manage_zone/{id}', [ZoneController::class,'manage_zone']);
+    Route::post('admin/zone/manage_zone_process', [ZoneController::class,'manage_zone_process'])->name('manage_zone_process');
+    Route::get('admin/zone/delete/{id}', [ZoneController::class,'delete']);
+    Route::get('admin/zone/status/{status}/{id}', [ZoneController::class,'status']);
+
+    //area route
+    Route::get('admin/area', [AreaController::class,'index']);
+    Route::get('admin/area/manage_area', [AreaController::class,'manage_area']);
+    Route::get('admin/area/manage_area/{id}', [AreaController::class,'manage_area']);
+    Route::post('admin/area/manage_area_process', [AreaController::class,'manage_area_process'])->name('manage_area_process');
+    Route::get('admin/area/delete/{id}', [AreaController::class,'delete']);
+    Route::get('admin/area/status/{status}/{id}', [AreaController::class,'status']);
 
     //customer route
     Route::get('admin/customer', [CustomerController::class,'index']);
